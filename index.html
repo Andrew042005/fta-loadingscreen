@@ -10,6 +10,7 @@ body{background-image:linear-gradient(rgba(255,42,42,.07) 1px,transparent 1px),l
 body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:9;background:repeating-linear-gradient(0deg,rgba(0,0,0,.28) 0,rgba(0,0,0,.28) 1px,transparent 1px,transparent 3px)}
 body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:10;background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.75));animation:fl 4s infinite}
 @keyframes fl{0%,100%{opacity:1}47%{opacity:.92}48%{opacity:1}73%{opacity:.85}74%{opacity:1}}
+#stage{position:absolute;left:0;top:0;width:100%;height:100%;-webkit-transform-origin:0 0;transform-origin:0 0}
 .wrap{position:absolute;inset:24px;border:1px solid var(--red2);display:flex;flex-direction:column}
 .top,.bot{display:flex;justify-content:space-between;align-items:center;padding:8px 16px;border-bottom:1px solid var(--red2);font-size:12px;letter-spacing:2px;text-transform:uppercase}
 .bot{border-bottom:0;border-top:1px solid var(--red2)}
@@ -36,7 +37,7 @@ h2{font-size:13px;letter-spacing:6px;margin-top:6px;text-align:center}
 .fill{height:100%;width:0;background:repeating-linear-gradient(90deg,var(--red) 0 8px,var(--red2) 8px 10px);transition:width .4s}
 .pl{display:flex;justify-content:space-between;font-size:12px;letter-spacing:2px}
 </style></head><body>
-<div class="wrap">
+<div id="stage"><div class="wrap">
  <div class="top"><span><span class="r">&#9632;</span> ENCLAVE SECURE TERMINAL // v2.48</span><span class="r">SIERRA ARMY DEPOT CMD</span><span>UPLINK: <span class="r blink" id="up">ESTABLISHING</span></span></div>
  <div class="main">
   <div class="left">
@@ -59,8 +60,10 @@ h2{font-size:13px;letter-spacing:6px;margin-top:6px;text-align:center}
   </div>
  </div>
  <div class="bot"><span>GOD BLESS THE ENCLAVE</span><span id="clk">--:--:--</span><span class="dim">AUTH LEVEL: OMEGA-RESTRICTED</span></div>
-</div>
+</div></div>
 <script>
+(function(){var W=1920,H=1080;function fit(){var w=window.innerWidth||document.documentElement.clientWidth,h=window.innerHeight||document.documentElement.clientHeight;if(!w||!h)return;var k=Math.min(w/W,h/H),st=document.getElementById('stage').style;st.width=(w/k)+'px';st.height=(h/k)+'px';var t='scale('+k+')';st.webkitTransform=t;st.transform=t}
+window.addEventListener('resize',fit);fit();setTimeout(fit,50);setTimeout(fit,500)})();
 var $=function(i){return document.getElementById(i)},total=0,needed=0,real=false,q=[],typing=false;
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function line(t,c){q.push([t,c]);if(!typing)pump()}
